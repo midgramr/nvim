@@ -10,3 +10,6 @@ vim.keymap.set('n', '[[', '?{<CR>w99[{', { remap = true })
 vim.keymap.set('n', '][', '/}<CR>b99]}', { remap = true })
 vim.keymap.set('n', ']]', 'j0[[%/{<CR>', { remap = true })
 vim.keymap.set('n', '[]', 'k$][%?}<CR>', { remap = true })
+
+-- I often accidentally type ':W' instead of ':w'
+vim.keymap.set('ca', 'W', 'w')
