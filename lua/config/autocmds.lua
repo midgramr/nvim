@@ -11,8 +11,9 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
   group = vim.api.nvim_create_augroup('help-options', { clear = true }),
   pattern = '*/doc/*.{txt,md}',
   callback = function()
-    local tab_id = vim.api.nvim_get_current_tabpage()
-    -- TODO: only open to the right if window is wide enough
-    pcall(vim.api.nvim_win_set_config, 0, { split = 'right', win = 0 })
+    local width = vim.api.nvim_win_get_width(0)
+    if width > 150 then
+      pcall(vim.api.nvim_win_set_config, 0, { split = 'right', win = 0 })
+    end
   end,
 })
