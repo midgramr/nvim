@@ -1,4 +1,16 @@
 local colorschemes = {
+  ['gruvbox'] = {
+    'ellisonleao/gruvbox.nvim',
+    priority = 1000,
+    config = function()
+      require('gruvbox').setup {
+        terminal_colors = false,
+        transparent_mode = true,
+      }
+      vim.cmd.colorscheme 'gruvbox'
+    end,
+  },
+
   ['gruvbox-material'] = {
     'sainnhe/gruvbox-material',
     lazy = false,
@@ -35,7 +47,7 @@ local colorschemes = {
     priority = 1000,
     init = function()
       vim.cmd.colorscheme 'kanagawa-paper'
-    end
+    end,
   },
 }
 

@@ -6,9 +6,11 @@ return {
   config = function()
     local servers = require 'config.lsp.servers'
     local ensure_installed = servers
+    -- TODO: make separate module for formatters/linters
     vim.list_extend(ensure_installed, {
-      'stylua',
       'clang-format',
+      'html-lsp',
+      'stylua',
     })
     require('mason-tool-installer').setup {
       auto_update = true,

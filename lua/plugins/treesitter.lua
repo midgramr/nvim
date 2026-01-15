@@ -4,6 +4,17 @@ return {
   main = 'nvim-treesitter.configs',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-context',
+    keys = {
+      {
+        '[c',
+        function ()
+          require('treesitter-context').go_to_context(vim.v.count1)
+        end,
+        mode = 'n',
+        desc = 'Go to treesitter context',
+        silent = true,
+      }
+    },
   },
   opts = {
     ensure_installed = {
@@ -39,14 +50,14 @@ return {
     },
     highlight = {
       enable = true,
-      disable = { 'latex', 'tmux' },
+      disable = { 'latex' },
       additional_vim_regex_highlighting = { 'ruby' },
     },
     incremental_selection = {
       enable = true,
       keymaps = {
         init_selection = 'gi',
-        node_incremental = 'gi',
+        scope_incremental = 'gi',
         node_decremental = 'go',
       },
     },
@@ -55,10 +66,4 @@ return {
       disable = { 'ruby', 'python' },
     },
   },
-  -- There are additional nvim-treesitter modules that you can use to interact
-  -- with nvim-treesitter. You should go explore a few and see what interests you:
-  --
-  --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-  --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-  --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 }

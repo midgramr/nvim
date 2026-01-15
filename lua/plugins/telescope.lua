@@ -12,7 +12,6 @@ return {
       end,
     },
     { 'nvim-telescope/telescope-ui-select.nvim' },
-
     -- Useful for getting pretty icons, but requires a Nerd Font.
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
@@ -56,12 +55,13 @@ return {
           i = {
             ['<M-f>'] = false,
             ['<M-k>'] = false,
-            ['<C-f>'] = false,
 
             ['<C-j>'] = 'move_selection_next',
             ['<C-k>'] = 'move_selection_previous',
-            ['<C-h>'] = 'preview_scrolling_left',
-            ['<C-l>'] = 'preview_scrolling_right',
+            ['<C-h>'] = 'results_scrolling_left',
+            ['<C-l>'] = 'results_scrolling_right',
+            ['<C-b>'] = 'preview_scrolling_left',
+            ['<C-f>'] = 'preview_scrolling_right',
             ['<C-r>'] = 'to_fuzzy_refine',
             ['<C-Down>'] = actions.cycle_history_next,
             ['<C-Up>'] = actions.cycle_history_prev,
@@ -96,6 +96,7 @@ return {
     vim.keymap.set('n', '<Leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<Leader>sR', builtin.registers, { desc = '[S]earch [R]egisters' })
     vim.keymap.set('n', '<Leader>sj', builtin.jumplist, { desc = '[S]earch [J]umplist' })
+    vim.keymap.set('n', '<Leader>so', builtin.vim_options, { desc = '[S]earch [O]ptions' })
     vim.keymap.set('n', '<Leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<Leader>/', function()
       builtin.current_buffer_fuzzy_find()
@@ -104,9 +105,9 @@ return {
     -- LSP overrides
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function()
-        vim.keymap.set('n', '<Leader>q', builtin.diagnostics, {
-          desc = 'Diagnostics; overrides vim.diagnostic.setloclist()',
-        })
+        vim.keymap.set('n', '<Leader>q', function()
+          builtin.diagnostics { bufnr = 0 }
+        end, { desc = 'Diagnostics; overrides vim.diagnostic.setloclist()' })
         vim.keymap.set('n', 'grr', builtin.lsp_references, {
           desc = 'LSP references; overrides vim.lsp.buf.references()',
         })
