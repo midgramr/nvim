@@ -5,26 +5,40 @@ snippet cf Codeforces
     #define all(a) a.begin(), a.end()
     #define sz(a) (int)a.size()
     #define rep(i, a, b) for (int i = a; i < b; ++i)
+    #define rrep(i, a, b) for (int i = a; i >= b; --i)
 
     constexpr char nl = '\n';
     using namespace std;
+    namespace ranges = std::ranges;
     using ll = long long;
     using pii = pair<int, int>;
 
-    template <typename T>
-    istream& operator>>(istream &is, vector<T> &v) {
+    template <typename P, typename Q> istream& operator>>(istream &is, pair<P, Q> &p) {
+        is >> p.first >> p.second;
+        return is;
+    }
+
+    template <typename P, typename Q> ostream& operator<<(ostream &os, pair<P, Q> &p) {
+        os << '{' << p.first << ',' << p.second << '}';
+        return os;
+    }
+
+    template <typename T> using maxpq = priority_queue<T>;
+    template <typename T> using minpq = priority_queue<T, vector<T>, greater<T>>;
+
+    template <typename T> istream& operator>>(istream &is, vector<T> &v) {
         for (auto& x : v) {
             is >> x;
         }
         return is;
     }
 
-    template <typename T>
-    ostream& operator<<(ostream &os, vector<T> &v) {
+    template <typename T> ostream& operator<<(ostream &os, vector<T> &v) {
         for (int i = 0; auto &x : v) {
             os << (i++ ? " " : "") << x;
         }
         os << nl;
+        return os;
     }
 
     void solve() {
@@ -34,11 +48,61 @@ snippet cf Codeforces
     int main() {
         ios_base::sync_with_stdio(false);
         cin.tie(nullptr);
-        int t = 1;
-        ${1:cin >> t;}
+        int t; cin >> t;
         while (t--) {
             solve();
         }
+    }
+
+snippet cf2 Codeforces
+    #include <bits/stdc++.h>
+    #define all(a) a.begin(), a.end()
+    #define sz(a) (int)a.size()
+    #define rep(i, a, b) for (int i = a; i < b; ++i)
+    #define rrep(i, a, b) for (int i = a; i >= b; --i)
+
+    constexpr char nl = '\n';
+    using namespace std;
+    namespace ranges = std::ranges;
+    using ll = long long;
+    using pii = pair<int, int>;
+
+    template <typename P, typename Q> istream& operator>>(istream &is, pair<P, Q> &p) {
+        is >> p.first >> p.second;
+        return is;
+    }
+
+    template <typename P, typename Q> ostream& operator<<(ostream &os, pair<P, Q> &p) {
+        os << '{' << p.first << ',' << p.second << '}';
+        return os;
+    }
+
+    template <typename T> using maxpq = priority_queue<T>;
+    template <typename T> using minpq = priority_queue<T, vector<T>, greater<T>>;
+
+    template <typename T> istream& operator>>(istream &is, vector<T> &v) {
+        for (auto& x : v) {
+            is >> x;
+        }
+        return is;
+    }
+
+    template <typename T> ostream& operator<<(ostream &os, vector<T> &v) {
+        for (int i = 0; auto &x : v) {
+            os << (i++ ? " " : "") << x;
+        }
+        os << nl;
+        return os;
+    }
+
+    void solve() {
+        $0
+    }
+
+    int main() {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        solve();
     }
 
 snippet ordset GNU PBDS Order Statistic Tree

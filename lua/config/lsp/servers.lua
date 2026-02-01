@@ -1,6 +1,7 @@
 return {
   'bash-language-server',
   'clangd',
+  'css-lsp',
   'eslint-lsp',
   'gopls',
   'html-lsp',

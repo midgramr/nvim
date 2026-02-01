@@ -9,6 +9,10 @@ vim.o.relativenumber = true
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
+
 vim.o.breakindent = true
 
 vim.o.undofile = true

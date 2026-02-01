@@ -16,6 +16,19 @@ return { -- Collection of various small independent plugins/modules
     -- - sr)'  - [S]urround [R]eplace [)] [']
     -- require('mini.surround').setup()
 
+    function Get_lsp_client()
+      local clients = vim.lsp.get_clients()
+      if #clients > 0 then
+        local names = clients[1]['name']
+        for i = 2, #clients do
+          names = names .. ', ' .. clients[i]['name']
+        end
+        return names
+      else
+        return ''
+      end
+    end
+
     local statusline = require 'mini.statusline'
     statusline.setup {
       content = {
@@ -28,7 +41,8 @@ return { -- Collection of various small independent plugins/modules
             '%<', -- Mark general truncate point
             { hl = 'MiniStatuslineFilename', strings = { filename } },
             '%=', -- End left alignment
-           { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+            { strings = { '%{v:lua.Get_lsp_client()}' } },
+            { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
             { hl = mode_hl, strings = { '%2l/%-2L' } },
           }
         end,
